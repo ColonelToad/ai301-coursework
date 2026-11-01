@@ -55,10 +55,22 @@ happened; these entries are the toolkit's own timeline.
 All four entries are graded. Keep every heading below, and fill each
 one in the week it belongs to.
 
-**Unit 5: [one line on the tool work]**
+**Unit 5: built issue-scout and a nine-query C++/Rust/TypeScript strategy**
 
-[2-4 sentences: what you built (the scout, your strategy), what broke
-or fell short, what changed because of it.]
+I installed the scout over my unit-1 selector, wrote a nine-query
+C++/Rust/TypeScript strategy, and dry-ran the queries before spending: the five
+broad searches surfaced week-old, zero-comment repos, so I added repo-scoped
+queries and a beginner-label ordering. The first scan's top five were all LLVM
+`good first issue` issues and all rejected on `contribution_policy`, because
+LLVM bans AI-assisted work on that label; the rubric was right, but the ranking
+had spent the whole budget on ineligible issues. I replaced the LLVM query with
+`help wanted`, dropped LLVM `good first issue` results, and re-ran: the second
+scan produced one accepted issue (wasmtime #5879) and four rejects, all blocked
+by open PRs that search cannot see. The re-grade of my merged Verilator issue
+rejected it on `available` — correct, since the PR is closed — and the scan also
+exposed a rubric bug: it failed an LLVM `help wanted` issue on
+`contribution_policy` even though the ban only names `good first issue`, so I
+made that check label-aware and logged why.
 
 **Unit 6: [one line on the tool work]**
 
