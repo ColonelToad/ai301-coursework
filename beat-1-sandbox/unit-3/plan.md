@@ -62,4 +62,22 @@ This change will make `GitHubTool` retrieve repository file paths and return the
 
 ## Deviations
 
-No implementation work has started. I will update this section after building. If the implementation follows this plan, I will record: “Nothing changed; the plan held.” If the source locations, API request approach, test approach, validation path, or scope changes, I will state what changed and why.
+The plan held on the source locations and the data flow: `agent/tools/github_tool.py`
+requests the recursive tree and adds `file_structure` to the metadata, and
+`ingestion/parsers/repo_analyzer.py` needed no logic change. Four details changed while
+building.
+
+- The retrieval lives in a new `_fetch_file_structure()` helper rather than inline in
+  `_fetch_repo_metadata()`, so the network call and its failure handling stay isolated
+  from the metadata assembly. The call site and the returned key are as planned.
+- The helper keeps only entries whose `type` is `blob`, because the analyzer compares
+  path strings and tree entries add no path of their own.
+- A truncated tree response logs `github_tree_truncated` and still returns the paths it
+  received, following the plan's instruction to use the project's logging convention
+  rather than treating a partial listing as complete.
+- No automated test file was added, although the plan promised focused test coverage.
+  The branch is the change only; the validation used the stand-in script recorded under
+  Evidence, run through the real `GitHubTool` to `RepoAnalyzer` path. If this branch
+  becomes a pull request, the missing test is the first review comment I expect, and it
+  is a real gap rather than a documentation omission.
+

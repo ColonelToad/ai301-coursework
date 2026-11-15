@@ -14,7 +14,7 @@ Two parts. Staff wrote the first; you write the second.
 
 Only issues in the course's Path Review repository are candidates:
 
-- Repo: `<ORG>/<PATH-REVIEW-REPO>` <!-- paste your section's repo from the Unit 1 Check-In page -->
+- Repo: `codepath/pathreview-ai301-fa26-s1`
 
 Do not search, fetch, or grade issues from any other repository, however
 promising. The wider GitHub comes later in the course; for now the field
@@ -36,4 +36,10 @@ you want to avoid. The skill uses this only to RANK the issues your
 rubric accepts, never to change a verdict: fit cannot rescue an issue
 your rubric rejects, and cannot sink one it accepts. -->
 
-(Write a few sentences here.)
+Python is the language I have used most, and I am most comfortable debugging
+data flow through an application: tracing where a value is created, where it is
+dropped, and which layer expects it. I am learning systems languages (C++ and
+Rust), but I would rather not take a first issue that depends on deep knowledge
+of one. I want an issue I can reproduce locally with a short command, and I
+prefer a named failing behavior over feature design. I would avoid an issue
+that needs CI/DevOps setup or a new test framework in my first week.

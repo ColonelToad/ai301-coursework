@@ -1,23 +1,5 @@
 # Voice guide: how I talk upstream
 
-<!--
-THIS IS A CARRY-OVER SLOT, not a new hole. You wrote this guide in
-week 2; paste your filled week-2 voice-guide.md here, whole. It is not
-re-authored and it is not graded as new work this week.
-
-Then reread it with the plan comment in mind. Your claim and repro
-comments promised and reported; a plan comment commits you to an
-approach in front of the people who maintain the code. If your rules
-do not cover that register (for example: how you state an approach you
-are not certain of, or how you respond when a maintainer already
-suggested a direction), extend the guide with what it needs. Extending
-is allowed and encouraged; starting over is not required.
-
-Live mode reads this file before your plan comment goes out and
-reports any rule your draft breaks. Eval mode ignores it entirely,
-because your voice is yours and carries no gold labels.
--->
-
 ## Who I am in threads
 
 I am a student contributor learning this repository by investigating one issue at a time. I will report what I personally tried, the environment I used, and the evidence I observed.
@@ -69,3 +51,46 @@ If I cannot reproduce the issue, I say so plainly and document the attempt rathe
 - A claim that an issue is invalid just because I could not reproduce it once.
 - A promise to deliver a fix, timeline, review, or support outcome that I do not control.
 - A confident root-cause statement based only on a symptom or one failed test.
+
+## Upstream: how I talk to maintainers
+
+### Claims I post
+
+#### Rule: Claim with a first step and a report-back
+
+A claim names the specific thing I will try first and says when I will report back. It never promises a fix, a merge, or a date I do not control.
+
+- Wrong: "I'll fix this and have a PR up this week."
+- Right: "I'd like to take this. I'll reproduce the stale-store failure first, then report the environment and result before opening a PR."
+
+#### Rule: Read the thread before claiming
+
+Before I claim, I read every comment. If someone has already asked to work on it, it is taken even without an assignment, so I choose another issue instead of claiming over them.
+
+- Wrong: "Also interested, I'll take this one."
+- Right: "It looks like @name is already working on this, so I'll leave it to them and pick another issue."
+
+### Questions I ask
+
+#### Rule: One answerable question, with what I tried
+
+A question names the version, command, and result I already tried, and asks one thing a maintainer can answer from their chair. It never asks them to reproduce the problem for me.
+
+- Wrong: "Any idea why this doesn't work?"
+- Right: "On 2.1.4, leaving the store directory as objects/ only makes capture fail with ENOTEMPTY; deleting HEAD and re-running did not help. Is removing a HEAD-less store the intended recovery path, or should it fail loudly?"
+
+#### Rule: Ask before building on an open design edge
+
+When the issue leaves a design choice open, I ask which direction is wanted before writing the fix, and I say what I would do by default.
+
+- Wrong: "I'll implement the watcher approach and open the PR."
+- Right: "The issue does not say whether reload should watch files or expose an explicit command. I would default to an explicit command first; is that the direction you want before I build it?"
+
+### Pings I send
+
+#### Rule: Nudge once, on the repo's clock
+
+I nudge only after the thread has been quiet longer than the repo's usual review rhythm. The nudge states the current state and makes one ask, and I never send it twice.
+
+- Wrong: "Bumping this, any update?"
+- Right: "The branch still applies cleanly and `bun run check` passes; is there anything you'd like changed before this can be reviewed?"

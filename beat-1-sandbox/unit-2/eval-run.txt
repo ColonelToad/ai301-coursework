@@ -1,32 +1,32 @@
-# eval run written by run_eval.py at 2026-09-24T21:18:33Z
+# eval run written by run_eval.py at 2026-11-14T18:01:53Z
 # model: sonnet (pinned)
-# graded: C:\Users\legot\.claude\skills\repro-check
+# graded: /mnt/c/Users/legot/.claude/skills/repro-check
 # packages: 20 scored
-#   rubric.md  sha256:52fce8b9d4594d00
+#   rubric.md  sha256:09b89db9b882924b
 #   evidence-guide.md  sha256:a06484601a0b6249
-#   SKILL.md  sha256:f1b0abceef33d418
+#   SKILL.md  sha256:094c7ec26a0f22ed
 #
 grading 20 package(s) with rubric.md + evidence-guide.md, model sonnet, 5 worker(s)...
-  pkg-02: reject
   pkg-04: reject
-  pkg-05: accept
+  pkg-02: reject
   pkg-03: accept
   pkg-01: accept
+  pkg-05: accept
   pkg-07: accept
-  pkg-09: accept
   pkg-06: reject
   pkg-08: reject
   pkg-10: accept
+  pkg-09: accept
   pkg-11: accept
   pkg-13: reject
-  pkg-12: accept
-  pkg-15: reject
+  pkg-12: reject
   pkg-14: reject
-  pkg-16: reject
+  pkg-15: reject
   pkg-17: reject
+  pkg-16: reject
   pkg-18: reject
+  pkg-20: reject
   pkg-19: reject
-  pkg-20: accept
 
 item    gold    verdict  agree  note
 pkg-01  accept  accept   yes    
@@ -40,7 +40,7 @@ pkg-08  reject  reject   yes
 pkg-09  accept  accept   yes    
 pkg-10  accept  accept   yes    
 pkg-11  accept  accept   yes    
-pkg-12  accept  accept   yes    
+pkg-12  accept  reject   NO     failed: followable-trigger, repo-aware-comms
 pkg-13  reject  reject   yes    
 pkg-14  reject  reject   yes    
 pkg-15  reject  reject   yes    
@@ -48,7 +48,7 @@ pkg-16  reject  reject   yes
 pkg-17  reject  reject   yes    
 pkg-18  reject  reject   yes    
 pkg-19  reject  reject   yes    
-pkg-20  reject  accept   NO     graded accept
+pkg-20  reject  reject   yes    
 
-categories: clear-accept 8/8  disclosure 0/1  no-evidence 4/4  unfollowable-comms 3/3  wrong-target 4/4
-agreement: 19/20 scored items  (bar: 18/20: below the bar; category floor unmet: no match in disclosure)
+categories: clear-accept 7/8  disclosure 1/1  no-evidence 4/4  unfollowable-comms 3/3  wrong-target 4/4
+agreement: 19/20 scored items  (bar: 18/20: PASS)

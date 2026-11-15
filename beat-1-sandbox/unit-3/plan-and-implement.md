@@ -19,9 +19,11 @@ ColonelToad
 
 **Plan comment**
 
-[Link to the comment where you posted your plan on the issue. Use the comment's own
-permalink. **Then paste the text of that comment underneath the link** — the pasted text is
-what this field is graded on, so copy across what you actually posted.]
+https://github.com/codepath/pathreview-ai301-fa26-s1/issues/18#issuecomment-5881520300
+
+I’m planning a bounded fix for Issue #18.
+
+I will update `GitHubTool._fetch_repo_metadata()` to retrieve repository file paths through GitHub’s recursive tree API and return them as `file_structure`. That is the field `RepoAnalyzer` already reads when determining `has_tests` and `has_ci`. I will keep the implementation limited to the file-path handoff and focused test coverage; I will not expand the existing detection heuristics or refactor unrelated metadata and ingestion behavior.
 
 ---
 
@@ -33,11 +35,40 @@ fix/18-has-tests
 
 **Evidence**
 
-https://github.com/codepath/pathreview-ai301-fa26-s1/issues/18#issuecomment-5881520300
+The check below runs the real `GitHubTool.execute()` and `RepoAnalyzer.parse()` against
+fixed GitHub responses: a repository whose tree contains `tests/test_app.py` and
+`.github/workflows/ci.yml`. The full script is in
+`beat-1-sandbox/unit-2/repro-report.md`; it is a stand-in input for the network call, not
+a copy of the bug, and both runs go through the real code path. Run from the repository
+root with the virtual environment activated.
 
-I’m planning a bounded fix for Issue #18.
+Before, on `main` at `f89c06f`:
 
-I will update GitHubTool._fetch_repo_metadata() to retrieve repository file paths through GitHub’s recursive tree API and return them as file_structure. That is the field RepoAnalyzer already reads when determining has_tests and has_ci. I will keep the implementation limited to the file-path handoff and focused test coverage; I will not expand the existing detection heuristics or refactor unrelated metadata and ingestion behavior.
+```
+$ git checkout main
+$ python check_18.py
+metadata keys: description, fork_count, has_readme, homepage, last_commit_date, name, open_issues_count, primary_language, star_count, topics
+file_structure present: False
+analyzer has_tests: False
+analyzer has_ci: False
+```
+
+After, on `fix/18-has-tests` at `12abc65`:
+
+```
+$ git checkout fix/18-has-tests
+$ python check_18.py
+metadata keys: description, file_structure, fork_count, has_readme, homepage, last_commit_date, name, open_issues_count, primary_language, star_count, topics
+file_structure present: True
+file_structure entries: 3
+contains tests/test_app.py: True
+contains .github/workflows/ci.yml: True
+analyzer has_tests: True
+analyzer has_ci: True
+```
+
+The only difference between the runs is the branch: the same command now finds the file
+list and both analyzer flags flip from `False` to `True`.
 
 ## Eval iterations
 

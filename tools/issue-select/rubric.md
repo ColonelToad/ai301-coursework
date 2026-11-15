@@ -34,11 +34,19 @@ will fail eval issues designed around that family.
 
 | Check | Evidence | Pass condition | Weight |
 |---|---|---|---|
-|  |  |  |  |
+| maintainer_alive | Read the repo-facts block: `last push to any branch`, `latest release`, `last 5 default-branch commits`, and the maintainer first-response sample. | Pass if the repo-facts block shows either a push to any branch, a default-branch commit, or a release within the last 90 days. Do not require a maintainer comment on this particular issue when recent repository activity exists. | required |
+| repo_in_use | Check the repo-facts block for the dates of the last 5 commits on the default branch. | At least 1 of the last 5 default-branch commits is dated within the last 30 days. | required |
+| bounded_scope | Read the issue title, body, labels, and comment thread. Evaluate the required outcome, not the amount of explanatory text or the number of examples. | Pass when the issue has one coherent outcome or one localized behavior to implement or repair, including a group of similar cases within the same feature. Do not fail merely because it names several related files, rules, examples, suspected causes, or optional implementation suggestions. Fail only when it explicitly requires unrelated deliverables, a broad redesign, a migration, a new subsystem, or a new feature with no defined completion condition. | required |
+| available | Read the issue state, assignees, linked-PR state in the repo-facts block, labels, and all comments in the issue thread. | Pass if the issue is open and unassigned, has no linked open PR that addresses it, and has no explicit current claim or maintainer-confirmed statement that another contributor is actively working on it. A closed linked PR, historical discussion, an unconfirmed expression of interest, or a claim that was later revoked, abandoned, or inactive for more than 90 days does not fail this check. | required |
+| enough_context | Read the issue title, body, labels, comment thread, and any named component, file, rule, or behavior. | Pass if the issue identifies a specific affected behavior, component, file, rule, or desired change and gives a contributor an identifiable starting point. A brief issue can pass when it names the missing/broken behavior and the relevant feature area; numbered reproduction steps, logs, screenshots, and a complete implementation plan are not required. Fail only when the issue gives no specific behavior, component, location, or completion target. | required |
+| newcomer_signal | Read the issue labels, body, and comment thread. | The issue has a beginner-oriented label such as `good first issue`, `good first bug`, `help wanted`, or an explicit maintainer statement that it is suitable for a new contributor. | preferred |
+| contribution_policy | Read the `contribution policy` line in the repo-facts block. | Pass if the policy allows AI-assisted contributions, allows them with conditions such as review, testing, understanding, or disclosure, or has no statement about AI/tooling. Fail if it explicitly says AI-generated code or documentation is not accepted, AI assistance is prohibited, or an equivalent restriction conflicts with the course workflow. | required |
 
 ## Verdict rule
 
-<!-- State how the grades above combine into accept or reject, and how
-unclear is treated. Example shape (write your own): "accept if every
-required check passes; preferred checks never change the verdict, they
-rank accepted issues; unclear counts as fail." -->
+Return `accept` only when every required check passes. Return `reject` when
+any required check fails or is unclear. Preferred checks never change the
+accept/reject verdict; use them only to rank accepted issues, with issues that
+pass more preferred checks ranked higher. For every failed or unclear required
+check, state the check name and cite the issue or repo evidence that caused
+that result.
