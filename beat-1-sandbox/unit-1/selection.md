@@ -87,7 +87,7 @@ Recommendation: Start with #18, then move to #13. Skip #22 until contributor has
       {"name": "newcomer_signal", "grade": "pass", "evidence": "Labeled for newer contributors (preferred)."},
       {"name": "contribution_policy", "grade": "pass", "evidence": "No restriction on AI-assisted contributions."}
     ],
-    "verdict": "reject"
+    "verdict": "accept"
   },
   {
     "item": "https://github.com/codepath/pathreview-ai301-fa26-s1/issues/22",
