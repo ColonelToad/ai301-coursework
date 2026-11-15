@@ -113,7 +113,7 @@ Quote source text directly in each field below. Paraphrase does not satisfy them
 
 **Run history**
 
-I restored the rubric that the September run used, filled the installed `scope.md`, and
+I recovered the filled rubric from my installed skill, filled the installed `scope.md`, and
 then ran the harness against that installed copy. The one-bundle smoke run reported:
 
 > agreement: 1/1 scored items
